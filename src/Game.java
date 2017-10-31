@@ -34,7 +34,7 @@ public class Game
      */
     private void createRooms()
     {
-        Room outside, theater, pub, lab, office;
+        Room outside, theater, pub, lab, office, attic, cellar;
       
         // create the rooms
         outside = new Room("outside the main entrance of the university");
@@ -42,14 +42,18 @@ public class Game
         pub = new Room("in the campus pub");
         lab = new Room("in a computing lab");
         office = new Room("in the computing admin office");
+        attic = new Room("you are in the attic");
+        cellar = new Room ("you are in the cellar");
         
         // initialise room exits
-        outside.setExits(null, theater, lab, pub);
-        theater.setExits(null, null, null, outside);
-        pub.setExits(null, outside, null, null);
-        lab.setExits(outside, office, null, null);
-        office.setExits(null, null, null, lab);
-
+        outside.setExits(null, theater, lab, pub, null, null);
+        theater.setExits(null, null, null, outside, null, null);
+        pub.setExits(null, outside, null, null, null, null);
+        lab.setExits(outside, office, null, null, attic, cellar);
+        office.setExits(null, null, null, lab, null, null);
+        attic.setExits(null, null, null, null, null, lab);
+        cellar.setExits(null, null, null, null, null, lab);
+        
         currentRoom = outside;  // start game outside
     }
 
@@ -146,7 +150,7 @@ public class Game
         System.out.println("around at the university.");
         System.out.println();
         System.out.println("Your command words are:");
-        System.out.println("   go quit help");
+        System.out.println("go quit help");
     }
 
     /** 
@@ -178,6 +182,15 @@ public class Game
             nextRoom = currentRoom.westExit;
         }
 
+        //6.5
+        if(direction.equals("up")) {
+            nextRoom = currentRoom.upExit;
+        }
+        if(direction.equals("down")) {
+            nextRoom = currentRoom.downExit;
+        }
+        //6.5
+        
         if (nextRoom == null) {
             System.out.println("There is no door!");
         }
@@ -246,6 +259,17 @@ public class Game
     {
     System.out.print("west ");
     }
+    
+    //6.5
+    if(currentRoom.upExit != null)
+    {
+    System.out.print("up ");
+    }
+    if(currentRoom.downExit != null)
+    {
+    System.out.print("down ");
+    }
+    //6.5
     
     System.out.println();
     }
