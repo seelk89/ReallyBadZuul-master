@@ -169,7 +169,7 @@ public class Game
         
         Room nextRoom = currentRoom.getExit(direction);
         // Try to leave current room.
-        /* 6,6
+        /* 6.6
         Room nextRoom = null;
         if(direction.equals("north")) {
             nextRoom = currentRoom.getExit("north");
@@ -241,11 +241,13 @@ public class Game
     }
     
     private void printLocationInfo()
-    {
-        
+    { 
     System.out.println("You are " + currentRoom.getDescription());
     System.out.print("Exits: ");
     
+    
+    System.out.println(currentRoom.getExitString());
+    /*
     if(currentRoom.northExit != null)
     {
     System.out.print("north ");
@@ -273,7 +275,7 @@ public class Game
     System.out.print("down ");
     }
     //6.5
-    
+    */
     System.out.println();
     }
 }
