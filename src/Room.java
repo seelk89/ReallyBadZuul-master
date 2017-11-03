@@ -59,7 +59,36 @@ public class Room
             downExit = down;
         //6.5
     }
-
+    
+    public Room getExit(String direction)
+    {
+    if(direction.equals("north")) 
+    {
+        return northExit;
+    }
+    if(direction.equals("east")) 
+    {
+        return eastExit;
+    }
+    if(direction.equals("south")) 
+    {
+        return southExit;
+    }
+    if(direction.equals("west")) 
+    {
+        return westExit;
+    }
+    if(direction.equals("up")) 
+    {
+        return upExit;
+    }
+    if(direction.equals("down")) 
+    {
+        return downExit;
+    }
+        return null;
+    }
+    
     /**
      * @return The description of the room.
      */
