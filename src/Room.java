@@ -1,3 +1,6 @@
+
+import java.util.HashMap;
+
 /**
  * Class Room - a room in an adventure game.
  *
@@ -21,7 +24,9 @@ public class Room
     private Room westExit;
     private Room upExit;
     private Room downExit;
-
+    
+    private HashMap<String, Room> exits;
+    
     /**
      * Create a room described "description". Initially, it has
      * no exits. "description" is something like "a kitchen" or
@@ -31,6 +36,7 @@ public class Room
     public Room(String description) 
     {
         this.description = description;
+        exits = new HashMap<String, Room>();
     }
 
     /**
@@ -41,27 +47,31 @@ public class Room
      * @param south The south exit.
      * @param west The west exit.
      */
-    public void setExits(Room north, Room east, Room south, Room west, Room up, Room down) 
+    public void setExits(String direction, Room neighbor) 
     {
+        exits.put(direction, neighbor);
+        /*
         if(north != null)
-            northExit = north;
+            exits.put("north", north);
         if(east != null)
-            eastExit = east;
+            exits.put("east", east);
         if(south != null)
-            southExit = south;
+            exits.put("south", south);
         if(west != null)
-            westExit = west;
+            exits.put("west", west);
         
         //6.5
         if(up != null)
-            upExit = up;
+            exits.put("up", up);
         if(down != null)
-            downExit = down;
+            exits.put("down", down);
         //6.5
+        */
     }
     
-    public Room getExit(String direction)
+    public Room getExit(String direction) 
     {
+    /*
     if(direction.equals("north")) 
     {
         return northExit;
@@ -87,8 +97,10 @@ public class Room
         return downExit;
     }
         return null;
+    */
+        return exits.get(direction);
     }
-    
+            
     /**
     * Return a description of the room’s exits,
     * for example, "Exits: north west".

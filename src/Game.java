@@ -46,6 +46,25 @@ public class Game
         cellar = new Room ("you are in the cellar");
         
         // initialise room exits
+        outside.setExits("east", theater);
+        outside.setExits("south", lab);
+        outside.setExits("west", pub);
+        
+        theater.setExits("west", outside);
+        
+        pub.setExits("east", outside);
+        
+        lab.setExits("north", outside);
+        lab.setExits("south", office);
+        lab.setExits("up", attic);
+        lab.setExits("down", cellar);
+        
+        office.setExits("west", lab);
+        
+        attic.setExits("down", lab);
+        
+        cellar.setExits("up", lab);
+        /*
         outside.setExits(null, theater, lab, pub, null, null);
         theater.setExits(null, null, null, outside, null, null);
         pub.setExits(null, outside, null, null, null, null);
@@ -53,6 +72,7 @@ public class Game
         office.setExits(null, null, null, lab, null, null);
         attic.setExits(null, null, null, null, null, lab);
         cellar.setExits(null, null, null, null, null, lab);
+        */
         
         currentRoom = outside;  // start game outside
     }
